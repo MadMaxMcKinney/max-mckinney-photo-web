@@ -12,12 +12,15 @@ export default function Breadcrumbs() {
     const [pathPages, setPathPages] = useState<string[]>([]);
 
     useEffect(() => {
+        // Split the pathname into an array of pages
         const newPath = pathname.split("/").filter((p) => p !== "");
-        setPathPages(newPath);
+
+        // Remove the last element, which is the current page
+        setPathPages(newPath.slice(0, newPath.length - 1));
     }, [pathname]);
 
     return (
-        <Breadcrumb className="px-6 mt-8">
+        <Breadcrumb className="mt-8 px-6">
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink asChild>
