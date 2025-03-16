@@ -3,7 +3,7 @@ import { ArrowUpRight, Boxes, Building, Car, DiscAlbum, Image, Star } from "luci
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-const SidebarLinks = [
+export const SidebarLinks = [
     {
         category: "Photos",
         links: [
