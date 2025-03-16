@@ -1,6 +1,7 @@
 import { createClient } from "next-sanity";
 import { defineQuery } from "groq";
 import { apiVersion, dataset, projectId } from "../env";
+import { PhotoAlbum } from "../../../sanity.types";
 
 export const client = createClient({
     projectId,
@@ -10,31 +11,31 @@ export const client = createClient({
 });
 
 export async function getAllPhotos() {
-    const photosQuery = defineQuery(`*[_type == "photoAlbum"].images[]`);
-    const photos = await client.fetch(photosQuery);
+    const getAllPhotosQuery = defineQuery(`*[_type == "photoAlbum"].images[]`);
+    const photos = await client.fetch(getAllPhotosQuery);
     return photos;
 }
 
 export async function getAllAlbums() {
-    const albumsQuery = defineQuery(`*[_type == "photoAlbum"]`);
-    const albums = await client.fetch(albumsQuery);
+    const getAllAlbumsQuery = defineQuery(`*[_type == "photoAlbum"]`);
+    const albums: PhotoAlbum[] = await client.fetch(getAllAlbumsQuery);
     return albums;
 }
 
 export async function getRecentPhotos(count: number) {
-    const photosQuery = defineQuery(`*[_type == "photoAlbum"].images[] | order(_createdAt desc)[0..${count - 1}]`);
-    const photos = await client.fetch(photosQuery);
+    const getRecentPhotosQuery = defineQuery(`*[_type == "photoAlbum"].images[] | order(_createdAt desc)[0..${count - 1}]`);
+    const photos = await client.fetch(getRecentPhotosQuery);
     return photos;
 }
 
 export async function getRecentAlbums(count: number) {
-    const albumsQuery = defineQuery(`*[_type == "photoAlbum"] | order(_createdAt desc)[0..${count - 1}]`);
-    const albums = await client.fetch(albumsQuery);
+    const getRecentAlbumQuery = defineQuery(`*[_type == "photoAlbum"] | order(_createdAt desc)[0..${count - 1}]`);
+    const albums: PhotoAlbum[] = await client.fetch(getRecentAlbumQuery);
     return albums;
 }
 
 export async function getAlbum(albumSlug: string) {
-    const albumQuery = defineQuery(`*[_type == "photoAlbum" && slug.current == "${albumSlug}"][0]`);
-    const album = await client.fetch(albumQuery);
+    const getAlbumQuery = defineQuery(`*[_type == "photoAlbum" && slug.current == "${albumSlug}"][0]`);
+    const album: PhotoAlbum = await client.fetch(getAlbumQuery);
     return album;
 }
