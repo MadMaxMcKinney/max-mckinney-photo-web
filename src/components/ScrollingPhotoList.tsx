@@ -10,10 +10,12 @@ import { urlFor } from "@/sanity/lib/image";
 export default function ScrollingPhotoList({ photos }: { photos: any[] }) {
     const scrollAreaRef = useRef<HTMLDivElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(false);
 
     function handleScroll(e: Event) {
         const target = e.target as HTMLDivElement;
         setCanScrollLeft(target.scrollLeft > 0);
+        setCanScrollRight(target.scrollLeft < target.scrollWidth - target.clientWidth - 200);
     }
 
     useEffect(() => {
@@ -42,7 +44,7 @@ export default function ScrollingPhotoList({ photos }: { photos: any[] }) {
             </div>
 
             {/* Right scroll indicator */}
-            <ScrollIndicatorOverlay direction="right" visible={true} />
+            <ScrollIndicatorOverlay direction="right" visible={canScrollRight} />
         </div>
     );
 }
