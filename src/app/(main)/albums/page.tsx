@@ -4,7 +4,7 @@ import AlbumCard from "@/components/AlbumCard";
 import { getAllAlbums } from "@/sanity/lib/client";
 
 export default async function Home() {
-    const allAlbums: any[] = await getAllAlbums();
+    const allAlbums = await getAllAlbums();
 
     return (
         <div>

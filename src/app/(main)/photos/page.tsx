@@ -5,7 +5,7 @@ import { urlFor } from "@/sanity/lib/image";
 import PhotoGrid from "@/components/PhotoGrid";
 
 export default async function Home() {
-    const allPhotos: any[] = await getAllPhotos();
+    const allPhotos = await getAllPhotos();
 
     return (
         <div>

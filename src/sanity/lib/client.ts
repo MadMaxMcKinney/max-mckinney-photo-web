@@ -12,7 +12,7 @@ export const client = createClient({
 
 export async function getAllPhotos() {
     const getAllPhotosQuery = defineQuery(`*[_type == "photoAlbum"].images[]`);
-    const photos = await client.fetch(getAllPhotosQuery);
+    const photos: PhotoAlbum["images"][] = await client.fetch(getAllPhotosQuery);
     return photos;
 }
 
@@ -24,7 +24,7 @@ export async function getAllAlbums() {
 
 export async function getRecentPhotos(count: number) {
     const getRecentPhotosQuery = defineQuery(`*[_type == "photoAlbum"].images[] | order(_createdAt desc)[0..${count - 1}]`);
-    const photos = await client.fetch(getRecentPhotosQuery);
+    const photos: PhotoAlbum["images"][] = await client.fetch(getRecentPhotosQuery);
     return photos;
 }
 

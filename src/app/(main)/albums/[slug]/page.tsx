@@ -13,8 +13,8 @@ export default async function Home({ params }: { params: Promise<{ slug: string 
     return (
         <div>
             <section className="@container">
-                <SectionTitle title={album?.title} description={album?.description} />
-                <PhotoGrid photos={album.images} />
+                <SectionTitle title={album?.title!} description={album?.description!} />
+                <PhotoGrid photos={album.images!} />
             </section>
         </div>
     );
