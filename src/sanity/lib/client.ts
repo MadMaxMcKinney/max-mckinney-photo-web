@@ -39,3 +39,15 @@ export async function getAlbum(albumSlug: string) {
     const album: PhotoAlbum = await client.fetch(getAlbumQuery);
     return album;
 }
+
+export async function getAlbumsByGenre(genre: string) {
+    const getAlbumsByGenreQuery = defineQuery(`*[_type == "photoAlbum" && genre->slug.current == "${genre}"]`);
+    const albums: PhotoAlbum[] = await client.fetch(getAlbumsByGenreQuery);
+    return albums;
+}
+
+export async function getLastUpdateDate() {
+    const getLastUpdateDateQuery = defineQuery(`*[_type == "photoAlbum"] | order(_updatedAt desc)[0]`);
+    const album: PhotoAlbum = await client.fetch(getLastUpdateDateQuery);
+    return album._updatedAt;
+}

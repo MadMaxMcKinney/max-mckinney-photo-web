@@ -18,7 +18,7 @@ const SidebarLinks = [
                 icon: DiscAlbum,
             },
             {
-                title: "Favorites",
+                title: "Max's picks",
                 href: "/photos/favorites",
                 icon: Star,
             },
@@ -29,17 +29,17 @@ const SidebarLinks = [
         links: [
             {
                 title: "Automotive",
-                href: "/genre/automotive",
+                href: "/genres/automotive",
                 icon: Car,
             },
             {
                 title: "Architecture",
-                href: "/genre/architecture",
+                href: "/genres/architecture",
                 icon: Building,
             },
             {
                 title: "Liminal",
-                href: "/genre/liminal",
+                href: "/genres/liminal",
                 icon: Boxes,
             },
         ],

@@ -3,7 +3,7 @@ import GalleryImage from "@/components/GalleryImage";
 import AlbumCard from "@/components/AlbumCard";
 import { getAllAlbums } from "@/sanity/lib/client";
 
-export default async function Home() {
+export default async function Albums() {
     const allAlbums = await getAllAlbums();
 
     return (
