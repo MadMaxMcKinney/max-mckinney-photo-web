@@ -31,7 +31,7 @@ export default function ScrollingPhotoList({ photos }: { photos: any[] }) {
             <div className="@container relative flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth" ref={scrollAreaRef}>
                 {photos.map((photo, i) => (
                     <div className="relative h-[200px] snap-center @lg:h-[300px] @xl:h-[400px]" key={i}>
-                        <GalleryImage className="w-auto max-w-none" src={urlFor(photo).width(800).url() || ""} />
+                        <GalleryImage className="w-auto max-w-none" src={urlFor(photo).width(800).url() || ""} zoomSrc={urlFor(photo).width(1400).url() || ""} />
                     </div>
                 ))}
                 <div className="grid snap-center place-items-center pr-12 pl-8">
