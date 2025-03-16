@@ -51,3 +51,9 @@ export async function getLastUpdateDate() {
     const album: PhotoAlbum = await client.fetch(getLastUpdateDateQuery);
     return album._updatedAt;
 }
+
+export async function getDocumentTitleBySlug(slug: string) {
+    const getDocumentTitleBySlugQuery = defineQuery(`*[slug.current == "${slug}"][0].title`);
+    const title: string = await client.fetch(getDocumentTitleBySlugQuery);
+    return title;
+}
