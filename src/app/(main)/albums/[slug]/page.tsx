@@ -8,7 +8,7 @@ export default async function SpecificAlbum({ params }: { params: Promise<{ slug
 
     return (
         <div>
-            <section className="@container">
+            <section>
                 <SectionTitle title={album?.title!} description={album?.description!} />
                 <PhotoGrid photos={album.images!} />
             </section>

@@ -73,6 +73,7 @@ export function AppSidebar() {
                 ))}
             </SidebarContent>
             <SidebarFooter className="pb-3 pb-4 group-data-[collapsible=icon]:hidden">
+                <p className="text-accent-foreground/40 w-full text-center text-sm">@madmaxmckinney</p>
                 <Button variant={"secondary"} className="w-full" asChild>
                     <a href="https://maxmckinney.com" target="_blank" rel="noopener noreferrer">
                         Check out my design work
