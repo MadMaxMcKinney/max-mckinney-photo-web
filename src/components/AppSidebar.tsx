@@ -1,6 +1,7 @@
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
-import { Boxes, Building, Car, DiscAlbum, Image, Star } from "lucide-react";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import { ArrowUpRight, Boxes, Building, Car, DiscAlbum, Image, Star } from "lucide-react";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 const SidebarLinks = [
     {
@@ -71,6 +72,14 @@ export function AppSidebar() {
                     </SidebarGroup>
                 ))}
             </SidebarContent>
+            <SidebarFooter className="pb-3 pb-4 group-data-[collapsible=icon]:hidden">
+                <Button variant={"secondary"} className="w-full" asChild>
+                    <a href="https://maxmckinney.com" target="_blank" rel="noopener noreferrer">
+                        Check out my design work
+                        <ArrowUpRight />
+                    </a>
+                </Button>
+            </SidebarFooter>
         </Sidebar>
     );
 }
