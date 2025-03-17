@@ -4,10 +4,11 @@ import PreviewPhotoGrid from "@/components/PreviewPhotoGrid";
 import AlbumGrid from "@/components/AlbumGrid";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import AlbumCard from "@/components/AlbumCard";
 
 export default async function Home() {
     const recentPhotos = await getRecentPhotos(6);
-    const recentAlbums = await getRecentAlbums(4);
+    const recentAlbums = await getRecentAlbums(3);
 
     return (
         <div>
@@ -34,7 +35,13 @@ export default async function Home() {
                         </Button>
                     }
                 />
-                <AlbumGrid albums={recentAlbums} />
+                <div className="@container">
+                    <div className="grid grid-cols-1 gap-4 @lg:grid-cols-2 @2xl:grid-cols-3">
+                        {recentAlbums.map((album, i) => (
+                            <AlbumCard album={album} key={i} />
+                        ))}
+                    </div>
+                </div>
             </section>
         </div>
     );
