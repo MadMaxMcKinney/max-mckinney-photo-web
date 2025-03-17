@@ -16,8 +16,8 @@ export default function AlbumCard({ album, ...props }: AlbumCardProps) {
                 <CardHeader>
                     <CardTitle>
                         <div className="overflow-clip">
-                            <div className="flex -translate-x-[20px] items-center transition-all group-hover:translate-x-0">
-                                <ArrowRight size={"20"} />
+                            <div className="flex -translate-x-[18px] items-center transition-all group-hover:translate-x-0">
+                                <ArrowRight size={"18"} />
                                 {album?.title}
                             </div>
                         </div>

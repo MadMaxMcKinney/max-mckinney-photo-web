@@ -17,7 +17,7 @@ export default async function Home() {
                     description="Not grouped, just fresh."
                     action={
                         <Button variant={"outline"} asChild>
-                            <Link href={"/photos"}>View all</Link>
+                            <Link href={"/photos"}>All photos</Link>
                         </Button>
                     }
                 />
@@ -30,7 +30,7 @@ export default async function Home() {
                     description="Dive into something specific."
                     action={
                         <Button variant={"outline"} asChild>
-                            <Link href={"/albums"}>View all</Link>
+                            <Link href={"/albums"}>All albums</Link>
                         </Button>
                     }
                 />

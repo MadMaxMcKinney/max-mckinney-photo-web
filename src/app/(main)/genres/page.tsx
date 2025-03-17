@@ -1,9 +1,7 @@
 import SectionTitle from "@/components/SectionTitle";
-import { getAllAlbums } from "@/sanity/lib/client";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
-import { Car } from "lucide-react";
-import { SidebarLinks } from "@/components/AppSidebar";
+import { SidebarLinks } from "@/lib/sidebar";
 
 export default async function Genres() {
     const sidebarGenres = SidebarLinks.filter((group) => group.category.toLowerCase() === "genres")[0].links;
@@ -15,8 +13,8 @@ export default async function Genres() {
                 <div className="grid grid-cols-2 gap-4 @5xl:grid-cols-3">
                     {sidebarGenres.map((genre, i) => (
                         <Link href={`${genre.href}`} key={i}>
-                            <Card className="group hover:bg-accent flex-row gap-3 overflow-clip px-6 transition-colors">
-                                <genre.icon size={24} />
+                            <Card className="group hover:bg-accent flex-row items-center gap-4 overflow-clip px-6 transition-colors">
+                                <genre.icon size={20} />
                                 <h2 className="text-lg">{genre.title}</h2>
                             </Card>
                         </Link>

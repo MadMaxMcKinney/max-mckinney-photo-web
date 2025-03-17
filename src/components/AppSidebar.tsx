@@ -1,52 +1,18 @@
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
-import { ArrowUpRight, Boxes, Building, Car, DiscAlbum, Image, Star } from "lucide-react";
+"use client";
+
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
-
-export const SidebarLinks = [
-    {
-        category: "Photos",
-        links: [
-            {
-                title: "All photos",
-                href: "/photos",
-                icon: Image,
-            },
-            {
-                title: "All albums",
-                href: "/albums",
-                icon: DiscAlbum,
-            },
-            {
-                title: "Max's picks",
-                href: "/photos/favorites",
-                icon: Star,
-            },
-        ],
-    },
-    {
-        category: "Genres",
-        links: [
-            {
-                title: "Automotive",
-                href: "/genres/automotive",
-                icon: Car,
-            },
-            {
-                title: "Architecture",
-                href: "/genres/architecture",
-                icon: Building,
-            },
-            {
-                title: "Liminal",
-                href: "/genres/liminal",
-                icon: Boxes,
-            },
-        ],
-    },
-];
+import { SidebarLinks } from "@/lib/sidebar";
 
 export function AppSidebar() {
+    const { setOpenMobile } = useSidebar();
+
+    function handleLinkClick() {
+        setOpenMobile(false);
+    }
+
     return (
         <Sidebar collapsible="icon">
             <SidebarHeader></SidebarHeader>
@@ -60,7 +26,7 @@ export function AppSidebar() {
                             <SidebarMenu>
                                 {group.links.map((link, j) => (
                                     <SidebarMenuItem key={j}>
-                                        <SidebarMenuButton asChild>
+                                        <SidebarMenuButton asChild onClick={handleLinkClick}>
                                             <Link href={link.href}>
                                                 <link.icon /> {link.title}
                                             </Link>

@@ -1,7 +1,7 @@
 import { createClient } from "next-sanity";
 import { defineQuery } from "groq";
 import { apiVersion, dataset, projectId } from "../env";
-import { PhotoAlbum } from "../../../sanity.types";
+import { PhotoAlbum, PhotoAlbumGenre } from "../../../sanity.types";
 
 export const client = createClient({
     projectId,
@@ -56,4 +56,10 @@ export async function getDocumentTitleBySlug(slug: string) {
     const getDocumentTitleBySlugQuery = defineQuery(`*[slug.current == "${slug}"][0].title`);
     const title: string = await client.fetch(getDocumentTitleBySlugQuery);
     return title;
+}
+
+export async function getGenreBySlug(slug: string) {
+    const getGenreBySlugQuery = defineQuery(`*[_type == "photoAlbumGenre" && slug.current == "${slug}"][0]`);
+    const genre: PhotoAlbumGenre = await client.fetch(getGenreBySlugQuery);
+    return genre;
 }
