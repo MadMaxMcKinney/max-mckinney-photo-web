@@ -47,6 +47,7 @@ export default defineType({
             validation: (Rule) => Rule.required(),
             options: {
                 metadata: ["exif", "lqip", "palette", "blurhash"],
+                hotspot: true,
             },
         }),
         defineField({
