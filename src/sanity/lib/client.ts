@@ -81,13 +81,14 @@ export async function getGenreBySlug(slug: string) {
 
 export async function getAllFavoritePhotos() {
     const getFavoritePhotosQuery = defineQuery(`
-        *[_type == "photoAlbum"]
+        *[_type == "photoAlbum"] | order(date desc)
         .images[]
             {
-                asset->
+                asset->,
+                "albumDate": ^.date
             }
         [ "Favorite" in asset.opt.media.tags[]->name.current ]
-        | order(^.date desc)
+        | order(albumDate desc)
     `);
     const photos: PhotoAlbum["images"][] = await client.fetch(getFavoritePhotosQuery);
     return photos;
@@ -95,13 +96,14 @@ export async function getAllFavoritePhotos() {
 
 export async function getRecentFavoritePhotos(count: number) {
     const getFavoritePhotosQuery = defineQuery(`
-        *[_type == "photoAlbum"]
+        *[_type == "photoAlbum"] | order(date desc)
         .images[]
             {
-                asset->
+                asset->,
+                "albumDate": ^.date
             }
         [ "Favorite" in asset.opt.media.tags[]->name.current ]
-        | order(^.date desc)[0..${count - 1}]
+        | order(albumDate desc)[0..${count - 1}]
     `);
     const photos: PhotoAlbum["images"][] = await client.fetch(getFavoritePhotosQuery);
     return photos;
