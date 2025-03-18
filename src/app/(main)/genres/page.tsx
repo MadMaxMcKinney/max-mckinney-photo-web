@@ -12,7 +12,7 @@ export default async function Genres() {
                 <SectionTitle title="All genres" description={`Looking for a specific vibe, check out my different genres.`} />
                 <div className="grid grid-cols-2 gap-4 @5xl:grid-cols-3">
                     {sidebarGenres.map((genre, i) => (
-                        <Link href={`${genre.href}`} key={i}>
+                        <Link href={`${genre.slug}`} key={i}>
                             <Card className="group hover:bg-accent flex-row items-center gap-4 overflow-clip px-6 transition-colors">
                                 <genre.icon size={20} />
                                 <h2 className="text-lg">{genre.title}</h2>

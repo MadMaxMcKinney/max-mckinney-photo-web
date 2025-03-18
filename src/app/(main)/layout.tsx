@@ -23,7 +23,7 @@ export default function RootLayout({
             <body className={`flex antialiased`}>
                 <SidebarProvider>
                     <AppSidebar />
-                    <SidebarInset className="min-w-1">
+                    <SidebarInset className="mb-8 min-w-1">
                         {/* Header bar */}
                         <div className="grid grid-flow-col items-center justify-start gap-3 border-b border-[var(--sidebar-border)] p-6">
                             <SidebarTrigger />

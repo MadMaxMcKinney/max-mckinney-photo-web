@@ -5,12 +5,22 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { SidebarLinks } from "@/lib/sidebar";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export function AppSidebar() {
     const { setOpenMobile } = useSidebar();
+    const pathname = usePathname();
 
     function handleLinkClick() {
         setOpenMobile(false);
+    }
+
+    function isNavActive(slug: string) {
+        if (pathname.toLowerCase() === slug.toLowerCase()) {
+            return true;
+        }
+        return false;
     }
 
     return (
@@ -26,8 +36,8 @@ export function AppSidebar() {
                             <SidebarMenu>
                                 {group.links.map((link, j) => (
                                     <SidebarMenuItem key={j}>
-                                        <SidebarMenuButton asChild onClick={handleLinkClick}>
-                                            <Link href={link.href}>
+                                        <SidebarMenuButton asChild onClick={handleLinkClick} isActive={isNavActive(link.slug)}>
+                                            <Link href={link.slug}>
                                                 <link.icon /> {link.title}
                                             </Link>
                                         </SidebarMenuButton>

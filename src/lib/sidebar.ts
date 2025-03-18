@@ -1,22 +1,33 @@
 import { Boxes, Building, Car, DiscAlbum, Star, Image } from "lucide-react";
 
-export const SidebarLinks = [
+type SidebarLink = {
+    title: string;
+    slug: string;
+    icon: React.ElementType;
+};
+
+type SidebarGroup = {
+    category: string;
+    links: SidebarLink[];
+};
+
+export const SidebarLinks: SidebarGroup[] = [
     {
         category: "Photos",
         links: [
             {
                 title: "All photos",
-                href: "/photos",
+                slug: "/photos",
                 icon: Image,
             },
             {
                 title: "All albums",
-                href: "/albums",
+                slug: "/albums",
                 icon: DiscAlbum,
             },
             {
                 title: "Max's picks",
-                href: "/photos/favorites",
+                slug: "/photos/favorites",
                 icon: Star,
             },
         ],
@@ -26,17 +37,17 @@ export const SidebarLinks = [
         links: [
             {
                 title: "Automotive",
-                href: "/genres/automotive",
+                slug: "/genres/automotive",
                 icon: Car,
             },
             {
                 title: "Liminal",
-                href: "/genres/liminal",
+                slug: "/genres/liminal",
                 icon: Boxes,
             },
             {
                 title: "Urban",
-                href: "/genres/urban",
+                slug: "/genres/urban",
                 icon: Building,
             },
         ],
