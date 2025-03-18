@@ -30,14 +30,14 @@ export const SidebarLinks = [
                 icon: Car,
             },
             {
-                title: "Architecture",
-                href: "/genres/architecture",
-                icon: Building,
-            },
-            {
                 title: "Liminal",
                 href: "/genres/liminal",
                 icon: Boxes,
+            },
+            {
+                title: "Urban",
+                href: "/genres/urban",
+                icon: Building,
             },
         ],
     },
