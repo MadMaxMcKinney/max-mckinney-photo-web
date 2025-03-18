@@ -2,13 +2,12 @@ import { createClient } from "next-sanity";
 import { defineQuery } from "groq";
 import { apiVersion, dataset, projectId } from "../env";
 import { PhotoAlbum, PhotoAlbumGenre } from "../../../sanity.types";
-import { count } from "console";
 
 export const client = createClient({
     projectId,
     dataset,
     apiVersion,
-    useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
+    useCdn: false, // Set to false for Server Components and server-side data fetching
 });
 
 export async function getAllPhotos() {
@@ -81,12 +80,12 @@ export async function getGenreBySlug(slug: string) {
 
 export async function getAllFavoritePhotos() {
     const getFavoritePhotosQuery = defineQuery(`
-        *[_type == "photoAlbum"] | order(date desc)
-        .images[]
-            {
+        *[_type == "photoAlbum"] {
+            images[] {
                 asset->,
                 "albumDate": ^.date
             }
+        }.images[] 
         [ "Favorite" in asset.opt.media.tags[]->name.current ]
         | order(albumDate desc)
     `);
@@ -96,12 +95,12 @@ export async function getAllFavoritePhotos() {
 
 export async function getRecentFavoritePhotos(count: number) {
     const getFavoritePhotosQuery = defineQuery(`
-        *[_type == "photoAlbum"] | order(date desc)
-        .images[]
-            {
+        *[_type == "photoAlbum"] {
+            images[] {
                 asset->,
                 "albumDate": ^.date
             }
+        }.images[] 
         [ "Favorite" in asset.opt.media.tags[]->name.current ]
         | order(albumDate desc)[0..${count - 1}]
     `);
