@@ -10,7 +10,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
     title: "Max McKinney Photos",
-    description: "Max McKinney's photography - automotive, architecture, liminal.",
+    description: "My photos — not on social media, but still on the internet.",
 };
 
 export default function RootLayout({
@@ -20,12 +20,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} dark`}>
-            <body className={`antialiased flex`}>
+            <body className={`flex antialiased`}>
                 <SidebarProvider>
                     <AppSidebar />
                     <SidebarInset className="min-w-1">
                         {/* Header bar */}
-                        <div className="grid grid-flow-col gap-3 items-center p-6 border-b border-[var(--sidebar-border)] justify-start">
+                        <div className="grid grid-flow-col items-center justify-start gap-3 border-b border-[var(--sidebar-border)] p-6">
                             <SidebarTrigger />
                             <Link href="/" className="transition-opacity hover:opacity-70">
                                 <Image src="/photos.max.svg" alt="Photos.Max logo" height={200} width={300} className="max-w-[120px]" />
@@ -33,7 +33,7 @@ export default function RootLayout({
                         </div>
                         {/* Page content */}
                         <Breadcrumbs />
-                        <div className="p-6 mt-4">{children}</div>
+                        <div className="mt-4 p-6">{children}</div>
                     </SidebarInset>
                 </SidebarProvider>
             </body>
