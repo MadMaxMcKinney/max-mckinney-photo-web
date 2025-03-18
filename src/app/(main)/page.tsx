@@ -1,4 +1,4 @@
-import { getRecentAlbums, getRecentPhotos } from "@/sanity/lib/client";
+import { getRecentAlbums, getRecentFavoritePhotos, getRecentPhotos } from "@/sanity/lib/client";
 import SectionTitle from "@/components/SectionTitle";
 import PreviewPhotoGrid from "@/components/PreviewPhotoGrid";
 import AlbumGrid from "@/components/AlbumGrid";
@@ -9,6 +9,7 @@ import AlbumCard from "@/components/AlbumCard";
 export default async function Home() {
     const recentPhotos = await getRecentPhotos(6);
     const recentAlbums = await getRecentAlbums(3);
+    const recentFavoritePhotos = await getRecentFavoritePhotos(6);
 
     return (
         <div>
@@ -22,7 +23,6 @@ export default async function Home() {
                         </Button>
                     }
                 />
-                {/* <ScrollingPhotoList photos={recentPhotos} /> */}
                 <PreviewPhotoGrid photos={recentPhotos} />
             </section>
             <section className="mt-24">
@@ -42,6 +42,18 @@ export default async function Home() {
                         ))}
                     </div>
                 </div>
+            </section>
+            <section className="mt-24">
+                <SectionTitle
+                    title="Recent Max's picks"
+                    description="Some of my favorites."
+                    action={
+                        <Button variant={"outline"} asChild>
+                            <Link href={"/photos/favorites"}>All favorites</Link>
+                        </Button>
+                    }
+                />
+                <PreviewPhotoGrid photos={recentFavoritePhotos} />
             </section>
         </div>
     );

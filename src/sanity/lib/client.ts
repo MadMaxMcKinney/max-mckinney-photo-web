@@ -2,6 +2,7 @@ import { createClient } from "next-sanity";
 import { defineQuery } from "groq";
 import { apiVersion, dataset, projectId } from "../env";
 import { PhotoAlbum, PhotoAlbumGenre } from "../../../sanity.types";
+import { count } from "console";
 
 export const client = createClient({
     projectId,
@@ -87,6 +88,20 @@ export async function getAllFavoritePhotos() {
             }
         [ "Favorite" in asset.opt.media.tags[]->name.current ]
         | order(^.date desc)
+    `);
+    const photos: PhotoAlbum["images"][] = await client.fetch(getFavoritePhotosQuery);
+    return photos;
+}
+
+export async function getRecentFavoritePhotos(count: number) {
+    const getFavoritePhotosQuery = defineQuery(`
+        *[_type == "photoAlbum"]
+        .images[]
+            {
+                asset->
+            }
+        [ "Favorite" in asset.opt.media.tags[]->name.current ]
+        | order(^.date desc)[0..${count - 1}]
     `);
     const photos: PhotoAlbum["images"][] = await client.fetch(getFavoritePhotosQuery);
     return photos;
