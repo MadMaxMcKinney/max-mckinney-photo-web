@@ -1,14 +1,14 @@
 import SectionTitle from "@/components/SectionTitle";
-import { getAllPhotos } from "@/sanity/lib/client";
+import { getAllFavoritePhotos } from "@/sanity/lib/client";
 import PhotoGrid from "@/components/PhotoGrid";
 
 export default async function Home() {
-    const allPhotos = await getAllPhotos();
+    const allPhotos = await getAllFavoritePhotos();
 
     return (
         <div>
             <section>
-                <SectionTitle title="All photos" description={`Every photo I've uploaded, all ${allPhotos.length} of them.`} />
+                <SectionTitle title="Max's picks" description={`Maybe not the best of the best, but my favorite nonetheless!`} />
                 <PhotoGrid photos={allPhotos} />
             </section>
         </div>

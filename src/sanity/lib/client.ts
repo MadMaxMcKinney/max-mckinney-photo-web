@@ -77,3 +77,17 @@ export async function getGenreBySlug(slug: string) {
     const genre: PhotoAlbumGenre = await client.fetch(getGenreBySlugQuery);
     return genre;
 }
+
+export async function getAllFavoritePhotos() {
+    const getFavoritePhotosQuery = defineQuery(`
+        *[_type == "photoAlbum"]
+        .images[]
+            {
+                asset->
+            }
+        [ "Favorite" in asset.opt.media.tags[]->name.current ]
+        | order(^.date desc)
+    `);
+    const photos: PhotoAlbum["images"][] = await client.fetch(getFavoritePhotosQuery);
+    return photos;
+}
