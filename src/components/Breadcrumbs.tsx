@@ -20,25 +20,29 @@ export default function Breadcrumbs() {
     }, [pathname]);
 
     return (
-        <Breadcrumb className="mt-8 px-6">
-            <BreadcrumbList>
-                <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
-                        <Link href="/">Home</Link>
-                    </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                {pathPages.map((page, index) => (
-                    <React.Fragment key={index}>
+        <>
+            {pathPages.length > 0 && (
+                <Breadcrumb className="mt-8 px-6">
+                    <BreadcrumbList>
                         <BreadcrumbItem>
                             <BreadcrumbLink asChild>
-                                <Link href={`/${pathPages.slice(0, index + 1).join("/")}`}>{capitalize(page)}</Link>
+                                <Link href="/">Home</Link>
                             </BreadcrumbLink>
                         </BreadcrumbItem>
-                        {index < pathPages.length - 1 && <BreadcrumbSeparator />}
-                    </React.Fragment>
-                ))}
-            </BreadcrumbList>
-        </Breadcrumb>
+                        <BreadcrumbSeparator />
+                        {pathPages.map((page, index) => (
+                            <React.Fragment key={index}>
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink asChild>
+                                        <Link href={`/${pathPages.slice(0, index + 1).join("/")}`}>{capitalize(page)}</Link>
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+                                {index < pathPages.length - 1 && <BreadcrumbSeparator />}
+                            </React.Fragment>
+                        ))}
+                    </BreadcrumbList>
+                </Breadcrumb>
+            )}
+        </>
     );
 }
