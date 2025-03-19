@@ -177,6 +177,11 @@
     z-index: 1;
     width: 36px;
     height: 36px;
+    transition: background 0.3s;
+
+    &:hover {
+        background: color-mix(in srgb, var(--primary) 50%, transparent);
+    }
 }
 [data-rmiz-content="found"] img,
 [data-rmiz-content="found"] svg,

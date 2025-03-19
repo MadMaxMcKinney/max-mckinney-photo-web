@@ -7,6 +7,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
     title: "Max McKinney Photos",
@@ -36,6 +37,7 @@ export default function RootLayout({
                         <div className="mt-4 p-6">{children}</div>
                     </SidebarInset>
                 </SidebarProvider>
+                <Toaster />
             </body>
         </html>
     );
