@@ -2,6 +2,7 @@ import { createClient } from "next-sanity";
 import { defineQuery } from "groq";
 import { apiVersion, dataset, projectId } from "../env";
 import { PhotoAlbum, PhotoAlbumGenre } from "../../../sanity.types";
+import { PHOTO_ALBUM_PROJECTION } from "./projections";
 
 export const client = createClient({
     projectId,
@@ -24,7 +25,7 @@ export async function getAllPhotos() {
 }
 
 export async function getAllAlbums() {
-    const getAllAlbumsQuery = defineQuery(`*[_type == "photoAlbum"] | order(date desc)`);
+    const getAllAlbumsQuery = defineQuery(`*[_type == "photoAlbum"] ${PHOTO_ALBUM_PROJECTION} | order(date desc)`);
     const albums: PhotoAlbum[] = await client.fetch(getAllAlbumsQuery);
     return albums;
 }
@@ -43,7 +44,7 @@ export async function getRecentPhotos(count: number) {
 }
 
 export async function getRecentAlbums(count: number) {
-    const getRecentAlbumQuery = defineQuery(`*[_type == "photoAlbum"] | order(date desc)[0..${count - 1}]`);
+    const getRecentAlbumQuery = defineQuery(`*[_type == "photoAlbum"] ${PHOTO_ALBUM_PROJECTION} | order(date desc)[0..${count - 1}]`);
     const albums: PhotoAlbum[] = await client.fetch(getRecentAlbumQuery);
     return albums;
 }
@@ -55,8 +56,9 @@ export async function getAlbum(albumSlug: string) {
 }
 
 export async function getAlbumsByGenre(genre: string) {
-    const getAlbumsByGenreQuery = defineQuery(`*[_type == "photoAlbum" && genre->slug.current == "${genre}"] | order(date desc)`);
+    const getAlbumsByGenreQuery = defineQuery(`*[_type == "photoAlbum" && genre->slug.current == "${genre}"] {..., genre->} | order(date desc)`);
     const albums: PhotoAlbum[] = await client.fetch(getAlbumsByGenreQuery);
+    console.log(albums);
     return albums;
 }
 

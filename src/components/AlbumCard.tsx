@@ -10,7 +10,7 @@ interface AlbumCardProps extends React.ComponentProps<"a"> {
 
 export default function AlbumCard({ album, ...props }: AlbumCardProps) {
     return (
-        <Link href={`/albums/${album.slug.current}`} key={props.key}>
+        <Link href={`/genres/${album.genre.slug.current}/${album.slug.current}`} key={props.key}>
             <Card className="group hover:bg-accent overflow-clip pt-0 transition-colors">
                 <img src={urlFor(album.mainImage).width(768).height(432).url() || ""} className="aspect-video object-cover" />
                 <CardHeader>
