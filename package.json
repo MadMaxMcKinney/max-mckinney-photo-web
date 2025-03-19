@@ -33,7 +33,8 @@
         "sanity-plugin-media": "^3.0.1",
         "styled-components": "^6.1.15",
         "tailwind-merge": "^3.0.2",
-        "tailwindcss-animate": "^1.0.7"
+        "tailwindcss-animate": "^1.0.7",
+        "use-color-thief": "^1.3.2"
     },
     "devDependencies": {
         "@tailwindcss/postcss": "^4",
