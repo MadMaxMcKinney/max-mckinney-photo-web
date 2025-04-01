@@ -8,6 +8,7 @@ import { GeistMono } from "geist/font/mono";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
     title: "Max McKinney Photos",
@@ -39,6 +40,7 @@ export default function RootLayout({
                 </SidebarProvider>
                 <Toaster />
             </body>
+            <Analytics />
         </html>
     );
 }
